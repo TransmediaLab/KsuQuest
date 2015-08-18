@@ -41,11 +41,28 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless @user == current_user
       render "/rules/terms_and_conditions", alert: "You cannot accept terms and conditiosn for another player."
+    else
+      @user.accepted_terms_and_conditions = true
+      @user.save
+      redirect_to "/", notice: "Play on!"
     end
-    
-    @user.accepted_terms_and_conditions = true
-    @user.save
-    redirect_to "/", notice: "Play on!"
   end
-  
+
+  def choose_faction
+    @user = User.find(params[:id])
+    unless @user == current_user
+      render "/rules/terms_and_conditions", alert: "You cannot choose another player's faction."
+    else
+      if(params[:faction_id]) 
+        @user.faction = Faction.find(params[:faction_id])
+        @user.save
+        FactionChange.create!(user: @user, faction: @user.faction)
+        redirect_to @user, notice: "Your faction is now #{@user.faction.name}!"
+      else
+        @factions = Faction.all
+        render action: :choose_faction
+      end 
+    end
+  end
+
 end

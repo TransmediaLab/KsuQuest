@@ -4,13 +4,14 @@
   <title>Scoreboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=0.5">
   <link href='http://fonts.googleapis.com/css?family=Press+Start+2P|Play' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "fonts", :media => "all" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div class="navbar">
     <div class="navbar-inner">
-      <a class="brand" href="/">Scoreboard</a>
+      <a class="brand" href="/"><%= image_tag "KSUQuest_Text_white.png" %></a>
       <div class="container">  
 
         <button class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse" type="button">
@@ -25,6 +26,7 @@
 
           <ul class="nav pull-left">
             <li><%= link_to "Leaderboards", boards_path %></li>
+            <li><%= link_to "Factions", factions_path %></li>
             <li><%= link_to "Tutorial", tutorial_path %></li>
             <li><%= link_to "Challenges", tasks_path %></li>
             <li><%= link_to "Rules", rules_path %></li>

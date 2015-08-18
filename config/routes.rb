@@ -1,13 +1,16 @@
 Scoreboard::Application.routes.draw do
+
   root to: 'boards#index'
 
-  post '/auth/:provider/callback' => 'sessions#create'
+  get '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => 'sessions#destroy', as: :signout
   
   resources :boards
+  resources :factions
   resources :users do
     member do
       get :accept_terms
+      get :choose_faction
     end
   end
   resources :tasks do
@@ -27,6 +30,7 @@ Scoreboard::Application.routes.draw do
   get '/terms_and_conditions', to: 'rules#terms_and_conditions'
   
   namespace :admin do
+    resources :factions 
     resources :tasks do
       collection {post :sort}
     end

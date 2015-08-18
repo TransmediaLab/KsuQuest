@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     @user = User.from_auth(auth_hash)
     @user.daily_pings.create(date: Date.today) unless @user.admin?
     session[:user_id] = @user.id
-    redirect_to request.env['omniauth.origin'] || '/', notice: "You have logged in successfully. Ready Player One?"
+    redirect_to request.env['omniauth.origin'] || '/', notice: "You have logged in successfully. Welcome to the Quest!"
   end
   
   def destroy

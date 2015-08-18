@@ -1,7 +1,7 @@
 class BoardsController < ApplicationController
   def index
     @search = params[:search]
-    @users = User.players.order("score desc").paginate(page: params[:page], per_page: 50)
+    @users = User.players.order("users.score desc").paginate(page: params[:page], per_page: 50)
     @next_page_path = boards_path(page: @users.next_page)
     render partial: "boards/user", collection: @users if request.xhr?
   end

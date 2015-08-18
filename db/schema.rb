@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130826150205) do
+ActiveRecord::Schema.define(:version => 20150817181525) do
 
   create_table "admin_actions", :force => true do |t|
     t.integer  "user_id"
@@ -28,6 +28,21 @@ ActiveRecord::Schema.define(:version => 20130826150205) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "faction_changes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "faction_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "factions", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "icon"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "scores", :force => true do |t|
     t.integer  "user_id"
     t.integer  "task_id"
@@ -38,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20130826150205) do
     t.datetime "updated_at",                       :null => false
     t.boolean  "admin_override"
     t.date     "day"
+    t.integer  "faction_id"
   end
 
   add_index "scores", ["admin_id"], :name => "index_scores_on_admin_id"
@@ -84,6 +100,9 @@ ActiveRecord::Schema.define(:version => 20130826150205) do
     t.integer  "score_find_someone"
     t.integer  "score_play_the_book"
     t.boolean  "accepted_terms_and_conditions"
+    t.integer  "faction_id"
+    t.string   "faction_badge"
+    t.text     "milestone_badges"
   end
 
   add_index "users", ["score"], :name => "index_users_on_score"

@@ -1,0 +1,11 @@
+<h1 class="page-header">Create a New Faction</h1>
+
+<%= simple_form_for @faction, url: admin_factions_path, multipart: true do |f| %>
+  <%= render "admin/factions/form", f: f %>
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">Create Faction</button>
+    <input type="reset" class="btn" value="Reset">
+  </div>
+<% end %>
+
+

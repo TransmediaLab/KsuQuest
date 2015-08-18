@@ -2,7 +2,7 @@ require 'digest/hmac'
 require 'encryptor'
 
 class Task < ActiveRecord::Base
-  CATEGORIES = %w(BeThere SolveThis GetSchooled FindSomeone PlayTheBook)
+  CATEGORIES = %w(BeThere SolveThis GetSchooled FindSomeone PlayTheMovie)
   
   has_many :scores, dependent: :destroy
   has_many :users, through: :scores
@@ -34,7 +34,7 @@ class Task < ActiveRecord::Base
   def complete!(user)
     points = self.value
     points += self.bonus if milestone? && scores.count < 10
-    score = Score.new({task: self, user: user, points: points, day: Date.today, approved: !user.freeze_points?}, as: :admin)
+    score = Score.new({task: self, user: user, faction: user.faction, points: points, day: Date.today, approved: !user.freeze_points?}, as: :admin)
   end
 
   def to_param

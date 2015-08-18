@@ -3,6 +3,7 @@ require 'encryptor'
 class TasksController < ApplicationController
   before_filter :login_required, except: [:complete_by_encrypted_package]
   before_filter :acceptance_required, except: [:complete_by_encrypted_package]
+  before_filter :faction_required, except: [:complete_by_encrypted_package]
   before_filter :find_task, only: [:show, :solve]
 
   def index

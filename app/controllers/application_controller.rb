@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
     render "/rules/accept_terms_and_conditions" unless current_user.accepted_terms_and_conditions? || current_user.admin?
   end
 
+  def faction_required
+    redirect_to choose_faction_user_path(current_user) unless current_user.faction || current_user.admin?
+  end
+
   def admin_required
     redirect_to '/', alert: "Must be an administrator to access that page." unless current_user.try(:admin?)
   end

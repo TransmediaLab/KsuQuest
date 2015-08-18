@@ -1,8 +1,21 @@
 <h1 class="page-header user-handle">
+ <%= image_tag(@user.faction.icon.url(:thumb)) if @user.faction %>
  <%= @user.name %>
  <%= "(#{ @user.eid })" if current_user.admin? %>
  <%= link_to "(change)", edit_user_path(@user) %>
+ <% if @user.faction %>
+   of the <%= @user.faction.name %> Faction
+   <%= link_to "(change)", choose_faction_user_path %>
+ <% end %>
 </h1>
+
+<% if @user.faction.nil? %>
+  <div class="alert alert-block">
+    <h4>Wait!</h4>
+    You must choose a faction to play!
+    <%= link_to "Choose Faction", choose_faction_user_path, class: "btn btn-success" %>
+  </div>
+<% end %>
 
 <div class="row">
   <div class="span-12  score-callout">

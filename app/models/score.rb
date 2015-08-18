@@ -18,6 +18,7 @@ class ScoreValidator < ActiveModel::Validator
 end
 
 class Score < ActiveRecord::Base
+  belongs_to :faction
   belongs_to :user
   belongs_to :task
   belongs_to :admin, class_name: 'User'
@@ -27,7 +28,7 @@ class Score < ActiveRecord::Base
   validates_numericality_of :points
   validates_with ScoreValidator
   
-  attr_accessible :day, :points, :user, :task, :admin, :approved, as: :admin
+  attr_accessible :day, :points, :user, :faction, :task, :admin, :approved, as: :admin
 
   after_save :update_user_scores
   after_create :apply_pyramid_scheme

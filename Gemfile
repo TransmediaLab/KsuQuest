@@ -7,6 +7,7 @@ gem 'rails', '3.2.19'
 
 # Use omniauth for authentication
 gem 'omniauth'
+gem 'omniauth-cas'
 
 gem 'sqlite3'
 gem 'bootstrap-sass'

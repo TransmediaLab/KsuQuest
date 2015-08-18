@@ -13,6 +13,7 @@
     <tr>
       <th>EID</th>
       <th>Status</th>
+      <th>Faction</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -21,6 +22,7 @@
     <tr>
       <th><%= link_to user.name, user_path(user) %></th>
       <td><%= user.admin?? "Admin" : (user.freeze_points?? "Frozen" : "Normal") %></td>
+      <td><%= user.faction.try(:name) || "undeclared" %></td>
       <td>
         <% unless user.admin? %>
           <%= render "admin/users/actions", user: user %>

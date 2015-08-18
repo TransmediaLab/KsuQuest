@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "Blackmoor";
+  src: url("/Blackmoor Std Regular.otf");
+  src: url("/Blackmoor Std Regular.otf") format("embedded-opentype"),
+       url("/Blackmoor Std Regular.ttf") format("truetype");
+}
+

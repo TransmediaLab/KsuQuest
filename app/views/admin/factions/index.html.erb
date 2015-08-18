@@ -1,0 +1,19 @@
+<h1>The Factions</h1>
+
+<% @factions.each do |faction| %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= image_tag(faction.icon.url, alt: "#{faction.name} faction badge") if faction.icon %>
+    </div>
+    <div class="col-md-6">
+      <h2><%= faction.name %></h2>
+      <%= faction.description %>
+      <%= link_to('Edit', edit_admin_faction_path(faction), class="btn btn-default" if current_user.admin? %>
+      <%= link_to('Destroy', admin_faction, method: :delete, data: { confirm: 'Are you sure?' } if current_user.admin? %></td>
+    </div>
+  </div>
+<% end %>
+
+<br />
+
+<%= link_to 'New Faction', new_faction_path %>

@@ -1,0 +1,13 @@
+<h1>The Factions</h1>
+
+<% @factions.each do |faction| %>
+  <div class="row">
+    <div class="span3">
+      <%= image_tag(faction.icon.url, alt: "#{faction.name} faction badge") if faction.icon %>
+    </div>
+    <div class="span4">
+      <h2><%= faction.name %></h2>
+      <%= faction.description %>
+    </div>
+  </div>
+<% end %>

@@ -2,10 +2,15 @@ class User < ActiveRecord::Base
   has_many :scores, dependent: :destroy
   has_many :tasks, through: :scores
   has_many :admin_actions
+  has_many :faction_changes
   has_many :daily_pings
+  belongs_to :faction
+  serialize :faction_badge, Hash
+  serialize :milestone_badges, Array
 
   validates_presence_of :eid, :name
   after_create :update_scores!
+  before_save :update_badges!
 
   scope :admins, where(admin: true)
   scope :players, where(admin: false).where(accepted_terms_and_conditions: true)
@@ -52,4 +57,16 @@ class User < ActiveRecord::Base
   def to_param
     "#{id}-#{eid.underscore.gsub(" ","-").gsub(/[^a-z0-9-]/i,"")}"
   end
+
+  def update_badges!
+    if self.faction
+      self.faction_badge = {name: self.faction.name, url: self.faction.icon.url(:thumb)}
+    else
+      self.faction_badge = {}
+    end
+    self.milestone_badges = self.milestones.collect do |milestone|
+      {name: milestone.name, url: milestone.icon.url}
+    end
+  end
+
 end

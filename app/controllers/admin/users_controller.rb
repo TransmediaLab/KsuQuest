@@ -39,6 +39,7 @@ class Admin::UsersController < ApplicationController
   
   def history
     @admin_actions = @user.admin_actions.order("admin_actions.created_at")
+    @faction_changes = @user.faction_changes.order("faction_changes.created_at")
   end
   
   def tasks
