@@ -51,7 +51,7 @@ class Admin::FactionsController < ApplicationController
 
     respond_to do |format|
       if @faction.save
-        format.html { redirect_to @faction, notice: 'Faction was successfully created.' }
+        format.html { redirect_to admin_factions_url, notice: 'Faction was successfully created.' }
         format.json { render json: @faction, status: :created, location: @faction }
       else
         format.html { render action: "new" }
@@ -67,7 +67,7 @@ class Admin::FactionsController < ApplicationController
 
     respond_to do |format|
       if @faction.update_attributes(params[:faction])
-        format.html { redirect_to @faction, notice: 'Faction was successfully updated.' }
+        format.html { redirect_to admin_factions_url, notice: 'Faction was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -83,7 +83,7 @@ class Admin::FactionsController < ApplicationController
     @faction.destroy
 
     respond_to do |format|
-      format.html { redirect_to factions_url }
+      format.html { redirect_to admin_factions_url }
       format.json { head :no_content }
     end
   end
