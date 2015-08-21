@@ -3,7 +3,7 @@ puts "== Seeding Users...\n\n"
 if Rails.env == "development"
   ADMIN_NAMES = %w(admin root owner)
 else
-  ADMIN_NAMES = %w(nhbean jopitts bward dli6873)
+  ADMIN_NAMES = %w(nhbean jopitts bward dli6873 erurton)
 end
   
 ADMIN_NAMES.each do |eid|
